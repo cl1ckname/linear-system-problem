@@ -7,6 +7,17 @@ from .vector import ort
 
 
 def QR(A: Matrix):
+    '''
+    Decomposes the original matrix an orthogonal matrix Q and an upper triangular matrix R. 
+    Learn more - https://en.wikipedia.org/wiki/QR_decomposition .
+
+    params
+    ------
+    A: Matrix
+        Matrix for decomposition
+    
+    returns matrices such that L*U = A and L is the lower diagonal matrix, U is the upper diagonal matrix
+    '''
     n = len(A)
     Q = eye(n)
     Q_steps: List[Matrix] = []
@@ -31,6 +42,19 @@ def QR(A: Matrix):
 
 @permutation
 def QRSolve(A: Matrix, b: List[float]):
+    '''
+    Solves linear system with QR decomposition
+
+    `y = Q.T * b` -> y vector. Such as the R is upper triangular matrix
+    we can easy solve it.
+
+    params
+    ------
+    A: Matrix
+        Matrix of the system
+    b: Vector | List[float]
+        Free vector of the system
+    '''
     n = len(A)
     assert n == len(b)
     Q, R = QR(A)

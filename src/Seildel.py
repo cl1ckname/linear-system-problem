@@ -6,6 +6,26 @@ from .matrix import Matrix, zeros
 
 @permutation
 def SeidelSolve(A: Matrix, b: Union[Vector, List[float]], eps: float):
+    '''
+    Seidel's iterative method for solving systems of algebraic 
+    linear equations. Learn more -> https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method
+
+    params
+    ------
+    A: Matrix
+        Matrix of the system
+    b: Vactor | List[float]
+        Free vector of the system
+    eps: float
+        Required methodological error of the solution
+
+    returns
+    -------
+    x: Vector
+        Vector of solution
+    k: int
+        Number of iterations
+    '''
     b = Vector.fromIterable(b)
     b = A.T * b
     A = A.T*A 

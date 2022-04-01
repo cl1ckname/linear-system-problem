@@ -1,13 +1,16 @@
-from math import sqrt as sq
 from typing import Callable, List
 
 from .vector import Vector
 from .matrix import Matrix, getP
 
-def sqrt(x: float):
-    return sq(x)
-
 def permutation(f: Callable[[Matrix, List[float]], Vector]):
+    '''
+    A decorator that multiplies the original matrix 
+    and the free vector by the transformation matrix 
+    to avoid zeros on the diagonal of the matrix of the 
+    system. The solution of the new system coincides 
+    with the solution of the original one
+    '''
     def solution(A: Matrix, b: List[float], eps: float = 0):
         P = getP(A)
         if eps:
@@ -20,6 +23,18 @@ def permutation(f: Callable[[Matrix, List[float]], Vector]):
 
 
 def BotDiagSolve(A: Matrix, b: List[float]):
+    '''
+    Solution of a system with a lower diagonal matrix by the Gauss method.
+
+    params
+    ------
+    A: Matrix
+        Matrix of linear system
+    b: Vector | List[float]
+        free vector of system
+    
+    returns the solution vector
+    '''
     assert len(A) == len(b)
     n = len(A)
     x = Vector(n)
@@ -31,6 +46,18 @@ def BotDiagSolve(A: Matrix, b: List[float]):
     return x
 
 def TopDiagSolve(A: Matrix, b: List[float]):
+    '''
+    Solution of a system with a top diagonal matrix by the Gauss method.
+
+    params
+    ------
+    A: Matrix
+        Matrix of linear system
+    b: Vector | List[float]
+        free vector of system
+    
+    returns the solution vector
+    '''
     assert len(A) == len(b)
     n = len(A)
     x = Vector(n)

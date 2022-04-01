@@ -3,12 +3,28 @@ from typing import List
 from .vector import Vector
 from .matrix import Matrix, eye
 
-def stopCreteria(abs_b: float, x: Vector, x_1: Vector, eps: float) -> bool:
-    abs_x = (x - x_1).abs()
-    return (abs_b/(1-abs_b))*abs_x > eps
-
 
 def IterationSolve(A: Matrix, b: List[float], eps: float):
+    '''
+    Fixed point iterative method for solving systems of algebraic 
+    linear equations. Learn more -> https://en.wikipedia.org/wiki/Fixed-point_iteration
+
+    params
+    ------
+    A: Matrix
+        Matrix of the system
+    b: Vactor | List[float]
+        Free vector of the system
+    eps: float
+        Required methodological error of the solution
+
+    returns
+    -------
+    x: Vector
+        Vector of solution
+    k: int
+        Number of iterations
+    '''
     n = len(A)
     bv = Vector.fromIterable(b)
     for i in range(4):
