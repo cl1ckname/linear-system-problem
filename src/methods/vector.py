@@ -82,6 +82,9 @@ class Vector:
     @overload
     def __getitem__(self, ind: slice) -> 'Vector': ...
 
+    @overload 
+    def __getitem__(self, ind: int) -> float: ...
+
     def __getitem__(self, ind: 'int | slice') -> float:
         if isinstance(ind, slice):
             return Vector.fromIterable(self.body[ind])

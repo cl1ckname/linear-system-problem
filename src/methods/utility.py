@@ -13,6 +13,7 @@ def permutation(f: Callable[[Matrix, List[float]], Vector]):
     '''
     def solution(A: Matrix, b: List[float], eps: float = 0):
         P = getP(A)
+        b = Vector.fromIterable(b)
         if eps:
             x = f(P*A, P * b, eps)
         else:

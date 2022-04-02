@@ -239,7 +239,7 @@ class Matrix:
                 for j in range(self.size):
                     for k in range(self.size):
                         r[i,j] += self[i,k] * other[k,j]
-        if isinstance(other, Vector):
+        elif isinstance(other, Vector):
             assert self.size == len(other)
             r = Vector(self.size)
             for i in range(self.size):
